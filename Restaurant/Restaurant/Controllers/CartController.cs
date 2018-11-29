@@ -29,5 +29,11 @@ namespace Restaurant.Controllers
             Session[ConstantsVariable.CART] = cart;
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult ShowCart()
+        {
+            CartViewModel model = (CartViewModel)Session[ConstantsVariable.CART];
+            return View(model);
+        }
     }
 }
