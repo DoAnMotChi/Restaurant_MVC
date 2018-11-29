@@ -1,0 +1,64 @@
+﻿@model Restaurant.ViewModel.MonAn.MonAnViewModel
+
+@{
+    ViewBag.Title = "ChiTietMonAn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section StyleSheet{
+    <link rel="stylesheet" type="text/css" href="~/Content/detailed-food.css">
+}
+
+<div class="container">
+    <div id="detailed-product" class="row">
+        <div class="choosen-product col-md-10">
+            <div class="row">
+                <div class="finfo-left col-md-4">
+                    <img class="fimage" src="@Model.Anh" alt="" srcset="">
+                </div>
+                <div class="fimfo-right col-md-8">
+                    <h5 class="fname">@Model.Ten</h5>
+                    <h5 class="fprice">Giá món ăn</h5>
+                    <span class="fdiscount">Giảm giá</span>
+                    <div class="fdescr">
+                        <p>@Model.MoTa</p>
+                    </div>
+                    <div class="action">
+                        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post, new { @class = "row", @id = "form-ad-to-cart" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true)
+                            <input type="number" value="1" name="Quantity" min="1" max="100"/>
+                            <input type="hidden" name="Id" value="@Model.Ma"/>
+                            <input name="edit" value="Thêm" type="submit" style="display: block;float: right;" class="btn btn-primary info" id="login" />
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="recommended-products" class="row">
+        @foreach (var item in ViewBag.RecommendedFoods)
+        {
+            <div class="col-md-3">
+                <div class="re-food">
+                    <a href="#" data-id="">
+                        <img class="fimage" src="@item.Anh" alt="" srcset="">
+                        <div class="fimfo">
+                            <h5 class="fname">@item.Ten</h5>
+                            <h5 class="fprice">Giá món ăn</h5>
+                            <span class="fdiscount">Giảm giá</span>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>
+
+

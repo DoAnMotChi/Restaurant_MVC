@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QUANLYQUANANModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BANAN">
+    <Key>
+      <PropertyRef Name="MABANAN" />
+    </Key>
+    <Property Name="MABANAN" Type="Int32" Nullable="false" />
+    <Property Name="TENBANAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_C_BANAN" FromRole="BANAN" ToRole="HOADON" />
+    <NavigationProperty Name="TINHTRANGBANANs" Relationship="Self.FK_TINHTRAN_HAVES_BANAN" FromRole="BANAN" ToRole="TINHTRANGBANAN" />
+  </EntityType>
+  <EntityType Name="CHITIETGIA">
+    <Key>
+      <PropertyRef Name="MANGUYENLIEU" />
+      <PropertyRef Name="MAGIA" />
+    </Key>
+    <Property Name="MANGUYENLIEU" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MAGIA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="GIANGUYENLIEU" Relationship="Self.FK_CHITIETG_CHITIETGI_GIANGUYE" FromRole="CHITIETGIA" ToRole="GIANGUYENLIEU" />
+    <NavigationProperty Name="NGUYENLIEU" Relationship="Self.FK_CHITIETG_CHITIETGI_NGUYENLI" FromRole="CHITIETGIA" ToRole="NGUYENLIEU" />
+  </EntityType>
+  <EntityType Name="CHITIETHOADON">
+    <Key>
+      <PropertyRef Name="MA_CTHD" />
+    </Key>
+    <Property Name="MA_CTHD" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAHD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAMONAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="THANHTIEN" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="HOADON" Relationship="Self.FK_CHITIETH_CHITIETHO_HOADON" FromRole="CHITIETHOADON" ToRole="HOADON" />
+    <NavigationProperty Name="MONAN" Relationship="Self.FK_CHITIETH_CHITIETHO_MONAN" FromRole="CHITIETHOADON" ToRole="MONAN" />
+  </EntityType>
+  <EntityType Name="CHITIETKHUYENMAI">
+    <Key>
+      <PropertyRef Name="MAMONAN" />
+      <PropertyRef Name="MAKHUYENMAI" />
+    </Key>
+    <Property Name="MAMONAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAKHUYENMAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="THOIGIANKHUYENMAI" Type="DateTime" Precision="3" />
+    <Property Name="THANHTIEN" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="KHUYENMAI" Relationship="Self.FK_CHITIETK_CHITIETKH_KHUYENMA" FromRole="CHITIETKHUYENMAI" ToRole="KHUYENMAI" />
+    <NavigationProperty Name="MONAN" Relationship="Self.FK_CHITIETK_CHITIETKH_MONAN" FromRole="CHITIETKHUYENMAI" ToRole="MONAN" />
+  </EntityType>
+  <EntityType Name="CHITIETPHIEUNHAP">
+    <Key>
+      <PropertyRef Name="MANGUYENLIEU" />
+      <PropertyRef Name="MAPHIEUNHAP" />
+    </Key>
+    <Property Name="MANGUYENLIEU" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MAPHIEUNHAP" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="THANHTIEN" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="NGUYENLIEU" Relationship="Self.FK_CHITIETP_CHITIETPH_NGUYENLI" FromRole="CHITIETPHIEUNHAP" ToRole="NGUYENLIEU" />
+    <NavigationProperty Name="PHIEUNHAP" Relationship="Self.FK_CHITIETP_CHITIETPH_PHIEUNHA" FromRole="CHITIETPHIEUNHAP" ToRole="PHIEUNHAP" />
+  </EntityType>
+  <EntityType Name="CONGTHUCMONAN">
+    <Key>
+      <PropertyRef Name="MANGUYENLIEU" />
+      <PropertyRef Name="MAMONAN" />
+    </Key>
+    <Property Name="MANGUYENLIEU" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MAMONAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="CACHDUNG" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MONAN" Relationship="Self.FK_CONGTHUC_CONGTHUCM_MONAN" FromRole="CONGTHUCMONAN" ToRole="MONAN" />
+    <NavigationProperty Name="NGUYENLIEU" Relationship="Self.FK_CONGTHUC_CONGTHUCM_NGUYENLI" FromRole="CONGTHUCMONAN" ToRole="NGUYENLIEU" />
+  </EntityType>
+  <EntityType Name="CUNGUNGNGUYENLIEU">
+    <Key>
+      <PropertyRef Name="MANHACUNGCAP" />
+      <PropertyRef Name="MANGUYENLIEU" />
+    </Key>
+    <Property Name="MANHACUNGCAP" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MANGUYENLIEU" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="THOIGIAN" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="NGUYENLIEU" Relationship="Self.FK_CUNGUNGN_CUNGUNGNG_NGUYENLI" FromRole="CUNGUNGNGUYENLIEU" ToRole="NGUYENLIEU" />
+    <NavigationProperty Name="NHACUNGCAP" Relationship="Self.FK_CUNGUNGN_CUNGUNGNG_NHACUNGC" FromRole="CUNGUNGNGUYENLIEU" ToRole="NHACUNGCAP" />
+  </EntityType>
+  <EntityType Name="DONVITINH">
+    <Key>
+      <PropertyRef Name="MADONVI" />
+    </Key>
+    <Property Name="MADONVI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENDONVI" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NGUYENLIEUx" Relationship="Self.FK_NGUYENLI_CO_DONVITIN" FromRole="DONVITINH" ToRole="NGUYENLIEU" />
+  </EntityType>
+  <EntityType Name="GIAMONAN">
+    <Key>
+      <PropertyRef Name="MAGIA" />
+    </Key>
+    <Property Name="MAGIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAMONAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NGAYCAPNHAT" Type="DateTime" Precision="0" />
+    <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="MONAN" Relationship="Self.FK_GIAMONAN_MONAN" FromRole="GIAMONAN" ToRole="MONAN" />
+  </EntityType>
+  <EntityType Name="GIANGUYENLIEU">
+    <Key>
+      <PropertyRef Name="MAGIA" />
+    </Key>
+    <Property Name="MAGIA" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="DONGIA" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="CHITIETGIAs" Relationship="Self.FK_CHITIETG_CHITIETGI_GIANGUYE" FromRole="GIANGUYENLIEU" ToRole="CHITIETGIA" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="MAHD" />
+    </Key>
+    <Property Name="MAHD" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAKHACHHANG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MANHANVIEN" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MABANAN" Type="Int32" Nullable="false" />
+    <Property Name="NGAYGIO" Type="DateTime" Precision="3" />
+    <Property Name="TINHTRANG" Type="Boolean" />
+    <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="BANAN" Relationship="Self.FK_HOADON_C_BANAN" FromRole="HOADON" ToRole="BANAN" />
+    <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.FK_CHITIETH_CHITIETHO_HOADON" FromRole="HOADON" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_HOADON_HAVE_KHACHHAN" FromRole="HOADON" ToRole="KHACHHANG" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_HOADON_HV_NHANVIEN" FromRole="HOADON" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MAKHACHHANG" />
+    </Key>
+    <Property Name="MAKHACHHANG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENKHACHHANG" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="GIOITINH" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="NAMSINH" Type="DateTime" Precision="3" />
+    <Property Name="DIACHI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SDT" Type="Decimal" Precision="11" Scale="0" />
+    <Property Name="MATKHAU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_HAVE_KHACHHAN" FromRole="KHACHHANG" ToRole="HOADON" />
+  </EntityType>
+  <EntityType Name="KHUYENMAI">
+    <Key>
+      <PropertyRef Name="MAKHUYENMAI" />
+    </Key>
+    <Property Name="MAKHUYENMAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENKHUYENMAI" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CHITIETKHUYENMAIs" Relationship="Self.FK_CHITIETK_CHITIETKH_KHUYENMA" FromRole="KHUYENMAI" ToRole="CHITIETKHUYENMAI" />
+  </EntityType>
+  <EntityType Name="MAHINH">
+    <Key>
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="MAMH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENMH" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="GHICHU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PHANQUYENs" Relationship="Self.FK_PHANQUYE_PHANQUYEN_MAHINH" FromRole="MAHINH" ToRole="PHANQUYEN" />
+  </EntityType>
+  <EntityType Name="MONAN">
+    <Key>
+      <PropertyRef Name="MAMONAN" />
+    </Key>
+    <Property Name="MAMONAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MANHOM" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MOTA" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="HINHANH" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="TENMONAN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.FK_CHITIETH_CHITIETHO_MONAN" FromRole="MONAN" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="CHITIETKHUYENMAIs" Relationship="Self.FK_CHITIETK_CHITIETKH_MONAN" FromRole="MONAN" ToRole="CHITIETKHUYENMAI" />
+    <NavigationProperty Name="CONGTHUCMONANs" Relationship="Self.FK_CONGTHUC_CONGTHUCM_MONAN" FromRole="MONAN" ToRole="CONGTHUCMONAN" />
+    <NavigationProperty Name="GIAMONANs" Relationship="Self.FK_GIAMONAN_MONAN" FromRole="MONAN" ToRole="GIAMONAN" />
+    <NavigationProperty Name="NHOMMONAN" Relationship="Self.FK_MONAN_THU_NHOMMONA" FromRole="MONAN" ToRole="NHOMMONAN" />
+  </EntityType>
+  <EntityType Name="NGUYENLIEU">
+    <Key>
+      <PropertyRef Name="MANGUYENLIEU" />
+    </Key>
+    <Property Name="MANGUYENLIEU" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MADONVI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENNGUYENLIEU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="THOIHANSUDUNG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="BAOQUAN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SOLUONGTON" Type="Int64" />
+    <NavigationProperty Name="CHITIETGIAs" Relationship="Self.FK_CHITIETG_CHITIETGI_NGUYENLI" FromRole="NGUYENLIEU" ToRole="CHITIETGIA" />
+    <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="Self.FK_CHITIETP_CHITIETPH_NGUYENLI" FromRole="NGUYENLIEU" ToRole="CHITIETPHIEUNHAP" />
+    <NavigationProperty Name="CONGTHUCMONANs" Relationship="Self.FK_CONGTHUC_CONGTHUCM_NGUYENLI" FromRole="NGUYENLIEU" ToRole="CONGTHUCMONAN" />
+    <NavigationProperty Name="CUNGUNGNGUYENLIEUx" Relationship="Self.FK_CUNGUNGN_CUNGUNGNG_NGUYENLI" FromRole="NGUYENLIEU" ToRole="CUNGUNGNGUYENLIEU" />
+    <NavigationProperty Name="DONVITINH" Relationship="Self.FK_NGUYENLI_CO_DONVITIN" FromRole="NGUYENLIEU" ToRole="DONVITINH" />
+  </EntityType>
+  <EntityType Name="NHACUNGCAP">
+    <Key>
+      <PropertyRef Name="MANHACUNGCAP" />
+    </Key>
+    <Property Name="MANHACUNGCAP" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENNHACUNGCAP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DIACHI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SDT" Type="Decimal" Precision="11" Scale="0" />
+    <NavigationProperty Name="CUNGUNGNGUYENLIEUx" Relationship="Self.FK_CUNGUNGN_CUNGUNGNG_NHACUNGC" FromRole="NHACUNGCAP" ToRole="CUNGUNGNGUYENLIEU" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MANHANVIEN" />
+    </Key>
+    <Property Name="MANHANVIEN" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="HOTENNHANVIEN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="GIOITINH" Type="String" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="NGAYSINH" Type="DateTime" Precision="3" />
+    <Property Name="DIACHI" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NGUYENQUAN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NGAYVAOLAM" Type="DateTime" Precision="3" />
+    <Property Name="NGAYNGHIVIEC" Type="DateTime" Precision="3" />
+    <Property Name="SDT" Type="Decimal" Precision="11" Scale="0" />
+    <Property Name="MATKHAU" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_HV_NHANVIEN" FromRole="NHANVIEN" ToRole="HOADON" />
+    <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK_PHIEUNHA_LAP_NHANVIEN" FromRole="NHANVIEN" ToRole="PHIEUNHAP" />
+    <NavigationProperty Name="QUANLYNHOMNGUOIDUNGs" Relationship="Self.FK_QUANLYNH_QUANLYNHO_NHANVIEN" FromRole="NHANVIEN" ToRole="QUANLYNHOMNGUOIDUNG" />
+  </EntityType>
+  <EntityType Name="NHOMMONAN">
+    <Key>
+      <PropertyRef Name="MANHOM" />
+    </Key>
+    <Property Name="MANHOM" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENNHOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MONANs" Relationship="Self.FK_MONAN_THU_NHOMMONA" FromRole="NHOMMONAN" ToRole="MONAN" />
+  </EntityType>
+  <EntityType Name="NHOMNGUOIDUNG">
+    <Key>
+      <PropertyRef Name="MANHOMNGUOIDUNG" />
+    </Key>
+    <Property Name="MANHOMNGUOIDUNG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENNHOM" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="GHICHU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PHANQUYENs" Relationship="Self.FK_PHANQUYE_PHANQUYEN_NHOMNGUO" FromRole="NHOMNGUOIDUNG" ToRole="PHANQUYEN" />
+    <NavigationProperty Name="QUANLYNHOMNGUOIDUNGs" Relationship="Self.FK_QUANLYNH_QUANLYNHO_NHOMNGUO" FromRole="NHOMNGUOIDUNG" ToRole="QUANLYNHOMNGUOIDUNG" />
+  </EntityType>
+  <EntityType Name="PHANQUYEN">
+    <Key>
+      <PropertyRef Name="MANHOMNGUOIDUNG" />
+      <PropertyRef Name="MAMH" />
+    </Key>
+    <Property Name="MANHOMNGUOIDUNG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MAMH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="COQUYNH" Type="Boolean" />
+    <NavigationProperty Name="MAHINH" Relationship="Self.FK_PHANQUYE_PHANQUYEN_MAHINH" FromRole="PHANQUYEN" ToRole="MAHINH" />
+    <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="Self.FK_PHANQUYE_PHANQUYEN_NHOMNGUO" FromRole="PHANQUYEN" ToRole="NHOMNGUOIDUNG" />
+  </EntityType>
+  <EntityType Name="PHIEUNHAP">
+    <Key>
+      <PropertyRef Name="MAPHIEUNHAP" />
+    </Key>
+    <Property Name="MAPHIEUNHAP" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MANHANVIEN" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="NGAYNHAP" Type="DateTime" Precision="3" />
+    <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="Self.FK_CHITIETP_CHITIETPH_PHIEUNHA" FromRole="PHIEUNHAP" ToRole="CHITIETPHIEUNHAP" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_PHIEUNHA_LAP_NHANVIEN" FromRole="PHIEUNHAP" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="QUANLYNHOMNGUOIDUNG">
+    <Key>
+      <PropertyRef Name="MANHANVIEN" />
+      <PropertyRef Name="MANHOMNGUOIDUNG" />
+    </Key>
+    <Property Name="MANHANVIEN" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MANHOMNGUOIDUNG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="GHICHU" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK_QUANLYNH_QUANLYNHO_NHANVIEN" FromRole="QUANLYNHOMNGUOIDUNG" ToRole="NHANVIEN" />
+    <NavigationProperty Name="NHOMNGUOIDUNG" Relationship="Self.FK_QUANLYNH_QUANLYNHO_NHOMNGUO" FromRole="QUANLYNHOMNGUOIDUNG" ToRole="NHOMNGUOIDUNG" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TINHTRANGBANAN">
+    <Key>
+      <PropertyRef Name="MATINHTRANG" />
+    </Key>
+    <Property Name="MATINHTRANG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MABANAN" Type="Int32" Nullable="false" />
+    <Property Name="TENTINHTRANG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="THOIGIANBATDAU" Type="DateTime" Precision="3" />
+    <Property Name="THOIGIANKETTHUC" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="BANAN" Relationship="Self.FK_TINHTRAN_HAVES_BANAN" FromRole="TINHTRANGBANAN" ToRole="BANAN" />
+  </EntityType>
+  <Association Name="FK_HOADON_C_BANAN">
+    <End Role="BANAN" Type="Self.BANAN" Multiplicity="1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANAN">
+        <PropertyRef Name="MABANAN" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MABANAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TINHTRAN_HAVES_BANAN">
+    <End Role="BANAN" Type="Self.BANAN" Multiplicity="1" />
+    <End Role="TINHTRANGBANAN" Type="Self.TINHTRANGBANAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BANAN">
+        <PropertyRef Name="MABANAN" />
+      </Principal>
+      <Dependent Role="TINHTRANGBANAN">
+        <PropertyRef Name="MABANAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETG_CHITIETGI_GIANGUYE">
+    <End Role="GIANGUYENLIEU" Type="Self.GIANGUYENLIEU" Multiplicity="1" />
+    <End Role="CHITIETGIA" Type="Self.CHITIETGIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GIANGUYENLIEU">
+        <PropertyRef Name="MAGIA" />
+      </Principal>
+      <Dependent Role="CHITIETGIA">
+        <PropertyRef Name="MAGIA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETG_CHITIETGI_NGUYENLI">
+    <End Role="NGUYENLIEU" Type="Self.NGUYENLIEU" Multiplicity="1" />
+    <End Role="CHITIETGIA" Type="Self.CHITIETGIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUYENLIEU">
+        <PropertyRef Name="MANGUYENLIEU" />
+      </Principal>
+      <Dependent Role="CHITIETGIA">
+        <PropertyRef Name="MANGUYENLIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETH_CHITIETHO_HOADON">
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="MAHD" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="MAHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETH_CHITIETHO_MONAN">
+    <End Role="MONAN" Type="Self.MONAN" Multiplicity="1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MONAN">
+        <PropertyRef Name="MAMONAN" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="MAMONAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETK_CHITIETKH_KHUYENMA">
+    <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="1" />
+    <End Role="CHITIETKHUYENMAI" Type="Self.CHITIETKHUYENMAI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHUYENMAI">
+        <PropertyRef Name="MAKHUYENMAI" />
+      </Principal>
+      <Dependent Role="CHITIETKHUYENMAI">
+        <PropertyRef Name="MAKHUYENMAI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETK_CHITIETKH_MONAN">
+    <End Role="MONAN" Type="Self.MONAN" Multiplicity="1" />
+    <End Role="CHITIETKHUYENMAI" Type="Self.CHITIETKHUYENMAI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MONAN">
+        <PropertyRef Name="MAMONAN" />
+      </Principal>
+      <Dependent Role="CHITIETKHUYENMAI">
+        <PropertyRef Name="MAMONAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETP_CHITIETPH_NGUYENLI">
+    <End Role="NGUYENLIEU" Type="Self.NGUYENLIEU" Multiplicity="1" />
+    <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUYENLIEU">
+        <PropertyRef Name="MANGUYENLIEU" />
+      </Principal>
+      <Dependent Role="CHITIETPHIEUNHAP">
+        <PropertyRef Name="MANGUYENLIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETP_CHITIETPH_PHIEUNHA">
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="1" />
+    <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUNHAP">
+        <PropertyRef Name="MAPHIEUNHAP" />
+      </Principal>
+      <Dependent Role="CHITIETPHIEUNHAP">
+        <PropertyRef Name="MAPHIEUNHAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONGTHUC_CONGTHUCM_MONAN">
+    <End Role="MONAN" Type="Self.MONAN" Multiplicity="1" />
+    <End Role="CONGTHUCMONAN" Type="Self.CONGTHUCMONAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MONAN">
+        <PropertyRef Name="MAMONAN" />
+      </Principal>
+      <Dependent Role="CONGTHUCMONAN">
+        <PropertyRef Name="MAMONAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CONGTHUC_CONGTHUCM_NGUYENLI">
+    <End Role="NGUYENLIEU" Type="Self.NGUYENLIEU" Multiplicity="1" />
+    <End Role="CONGTHUCMONAN" Type="Self.CONGTHUCMONAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUYENLIEU">
+        <PropertyRef Name="MANGUYENLIEU" />
+      </Principal>
+      <Dependent Role="CONGTHUCMONAN">
+        <PropertyRef Name="MANGUYENLIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUNGUNGN_CUNGUNGNG_NGUYENLI">
+    <End Role="NGUYENLIEU" Type="Self.NGUYENLIEU" Multiplicity="1" />
+    <End Role="CUNGUNGNGUYENLIEU" Type="Self.CUNGUNGNGUYENLIEU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUYENLIEU">
+        <PropertyRef Name="MANGUYENLIEU" />
+      </Principal>
+      <Dependent Role="CUNGUNGNGUYENLIEU">
+        <PropertyRef Name="MANGUYENLIEU" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CUNGUNGN_CUNGUNGNG_NHACUNGC">
+    <End Role="NHACUNGCAP" Type="Self.NHACUNGCAP" Multiplicity="1" />
+    <End Role="CUNGUNGNGUYENLIEU" Type="Self.CUNGUNGNGUYENLIEU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHACUNGCAP">
+        <PropertyRef Name="MANHACUNGCAP" />
+      </Principal>
+      <Dependent Role="CUNGUNGNGUYENLIEU">
+        <PropertyRef Name="MANHACUNGCAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NGUYENLI_CO_DONVITIN">
+    <End Role="DONVITINH" Type="Self.DONVITINH" Multiplicity="1" />
+    <End Role="NGUYENLIEU" Type="Self.NGUYENLIEU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONVITINH">
+        <PropertyRef Name="MADONVI" />
+      </Principal>
+      <Dependent Role="NGUYENLIEU">
+        <PropertyRef Name="MADONVI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GIAMONAN_MONAN">
+    <End Role="MONAN" Type="Self.MONAN" Multiplicity="0..1" />
+    <End Role="GIAMONAN" Type="Self.GIAMONAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MONAN">
+        <PropertyRef Name="MAMONAN" />
+      </Principal>
+      <Dependent Role="GIAMONAN">
+        <PropertyRef Name="MAMONAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOADON_HAVE_KHACHHAN">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MAKHACHHANG" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MAKHACHHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOADON_HV_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANHANVIEN" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MANHANVIEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHANQUYE_PHANQUYEN_MAHINH">
+    <End Role="MAHINH" Type="Self.MAHINH" Multiplicity="1" />
+    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MAHINH">
+        <PropertyRef Name="MAMH" />
+      </Principal>
+      <Dependent Role="PHANQUYEN">
+        <PropertyRef Name="MAMH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MONAN_THU_NHOMMONA">
+    <End Role="NHOMMONAN" Type="Self.NHOMMONAN" Multiplicity="1" />
+    <End Role="MONAN" Type="Self.MONAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHOMMONAN">
+        <PropertyRef Name="MANHOM" />
+      </Principal>
+      <Dependent Role="MONAN">
+        <PropertyRef Name="MANHOM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHIEUNHA_LAP_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANHANVIEN" />
+      </Principal>
+      <Dependent Role="PHIEUNHAP">
+        <PropertyRef Name="MANHANVIEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QUANLYNH_QUANLYNHO_NHANVIEN">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="1" />
+    <End Role="QUANLYNHOMNGUOIDUNG" Type="Self.QUANLYNHOMNGUOIDUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANHANVIEN" />
+      </Principal>
+      <Dependent Role="QUANLYNHOMNGUOIDUNG">
+        <PropertyRef Name="MANHANVIEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHANQUYE_PHANQUYEN_NHOMNGUO">
+    <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+    <End Role="PHANQUYEN" Type="Self.PHANQUYEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHOMNGUOIDUNG">
+        <PropertyRef Name="MANHOMNGUOIDUNG" />
+      </Principal>
+      <Dependent Role="PHANQUYEN">
+        <PropertyRef Name="MANHOMNGUOIDUNG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QUANLYNH_QUANLYNHO_NHOMNGUO">
+    <End Role="NHOMNGUOIDUNG" Type="Self.NHOMNGUOIDUNG" Multiplicity="1" />
+    <End Role="QUANLYNHOMNGUOIDUNG" Type="Self.QUANLYNHOMNGUOIDUNG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHOMNGUOIDUNG">
+        <PropertyRef Name="MANHOMNGUOIDUNG" />
+      </Principal>
+      <Dependent Role="QUANLYNHOMNGUOIDUNG">
+        <PropertyRef Name="MANHOMNGUOIDUNG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QUANLYQUANANEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BANANs" EntityType="Self.BANAN" />
+    <EntitySet Name="CHITIETGIAs" EntityType="Self.CHITIETGIA" />
+    <EntitySet Name="CHITIETHOADONs" EntityType="Self.CHITIETHOADON" />
+    <EntitySet Name="CHITIETKHUYENMAIs" EntityType="Self.CHITIETKHUYENMAI" />
+    <EntitySet Name="CHITIETPHIEUNHAPs" EntityType="Self.CHITIETPHIEUNHAP" />
+    <EntitySet Name="CONGTHUCMONANs" EntityType="Self.CONGTHUCMONAN" />
+    <EntitySet Name="CUNGUNGNGUYENLIEUx" EntityType="Self.CUNGUNGNGUYENLIEU" />
+    <EntitySet Name="DONVITINHs" EntityType="Self.DONVITINH" />
+    <EntitySet Name="GIAMONANs" EntityType="Self.GIAMONAN" />
+    <EntitySet Name="GIANGUYENLIEUx" EntityType="Self.GIANGUYENLIEU" />
+    <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
+    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+    <EntitySet Name="KHUYENMAIs" EntityType="Self.KHUYENMAI" />
+    <EntitySet Name="MAHINHs" EntityType="Self.MAHINH" />
+    <EntitySet Name="MONANs" EntityType="Self.MONAN" />
+    <EntitySet Name="NGUYENLIEUx" EntityType="Self.NGUYENLIEU" />
+    <EntitySet Name="NHACUNGCAPs" EntityType="Self.NHACUNGCAP" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="NHOMMONANs" EntityType="Self.NHOMMONAN" />
+    <EntitySet Name="NHOMNGUOIDUNGs" EntityType="Self.NHOMNGUOIDUNG" />
+    <EntitySet Name="PHANQUYENs" EntityType="Self.PHANQUYEN" />
+    <EntitySet Name="PHIEUNHAPs" EntityType="Self.PHIEUNHAP" />
+    <EntitySet Name="QUANLYNHOMNGUOIDUNGs" EntityType="Self.QUANLYNHOMNGUOIDUNG" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TINHTRANGBANANs" EntityType="Self.TINHTRANGBANAN" />
+    <AssociationSet Name="FK_HOADON_C_BANAN" Association="Self.FK_HOADON_C_BANAN">
+      <End Role="BANAN" EntitySet="BANANs" />
+      <End Role="HOADON" EntitySet="HOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TINHTRAN_HAVES_BANAN" Association="Self.FK_TINHTRAN_HAVES_BANAN">
+      <End Role="BANAN" EntitySet="BANANs" />
+      <End Role="TINHTRANGBANAN" EntitySet="TINHTRANGBANANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETG_CHITIETGI_GIANGUYE" Association="Self.FK_CHITIETG_CHITIETGI_GIANGUYE">
+      <End Role="GIANGUYENLIEU" EntitySet="GIANGUYENLIEUx" />
+      <End Role="CHITIETGIA" EntitySet="CHITIETGIAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETG_CHITIETGI_NGUYENLI" Association="Self.FK_CHITIETG_CHITIETGI_NGUYENLI">
+      <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+      <End Role="CHITIETGIA" EntitySet="CHITIETGIAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETH_CHITIETHO_HOADON" Association="Self.FK_CHITIETH_CHITIETHO_HOADON">
+      <End Role="HOADON" EntitySet="HOADONs" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETH_CHITIETHO_MONAN" Association="Self.FK_CHITIETH_CHITIETHO_MONAN">
+      <End Role="MONAN" EntitySet="MONANs" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETK_CHITIETKH_KHUYENMA" Association="Self.FK_CHITIETK_CHITIETKH_KHUYENMA">
+      <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+      <End Role="CHITIETKHUYENMAI" EntitySet="CHITIETKHUYENMAIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETK_CHITIETKH_MONAN" Association="Self.FK_CHITIETK_CHITIETKH_MONAN">
+      <End Role="MONAN" EntitySet="MONANs" />
+      <End Role="CHITIETKHUYENMAI" EntitySet="CHITIETKHUYENMAIs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETP_CHITIETPH_NGUYENLI" Association="Self.FK_CHITIETP_CHITIETPH_NGUYENLI">
+      <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+      <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETP_CHITIETPH_PHIEUNHA" Association="Self.FK_CHITIETP_CHITIETPH_PHIEUNHA">
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+      <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONGTHUC_CONGTHUCM_MONAN" Association="Self.FK_CONGTHUC_CONGTHUCM_MONAN">
+      <End Role="MONAN" EntitySet="MONANs" />
+      <End Role="CONGTHUCMONAN" EntitySet="CONGTHUCMONANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CONGTHUC_CONGTHUCM_NGUYENLI" Association="Self.FK_CONGTHUC_CONGTHUCM_NGUYENLI">
+      <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+      <End Role="CONGTHUCMONAN" EntitySet="CONGTHUCMONANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUNGUNGN_CUNGUNGNG_NGUYENLI" Association="Self.FK_CUNGUNGN_CUNGUNGNG_NGUYENLI">
+      <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+      <End Role="CUNGUNGNGUYENLIEU" EntitySet="CUNGUNGNGUYENLIEUx" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CUNGUNGN_CUNGUNGNG_NHACUNGC" Association="Self.FK_CUNGUNGN_CUNGUNGNG_NHACUNGC">
+      <End Role="NHACUNGCAP" EntitySet="NHACUNGCAPs" />
+      <End Role="CUNGUNGNGUYENLIEU" EntitySet="CUNGUNGNGUYENLIEUx" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NGUYENLI_CO_DONVITIN" Association="Self.FK_NGUYENLI_CO_DONVITIN">
+      <End Role="DONVITINH" EntitySet="DONVITINHs" />
+      <End Role="NGUYENLIEU" EntitySet="NGUYENLIEUx" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GIAMONAN_MONAN" Association="Self.FK_GIAMONAN_MONAN">
+      <End Role="MONAN" EntitySet="MONANs" />
+      <End Role="GIAMONAN" EntitySet="GIAMONANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOADON_HAVE_KHACHHAN" Association="Self.FK_HOADON_HAVE_KHACHHAN">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="HOADON" EntitySet="HOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOADON_HV_NHANVIEN" Association="Self.FK_HOADON_HV_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="HOADON" EntitySet="HOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHANQUYE_PHANQUYEN_MAHINH" Association="Self.FK_PHANQUYE_PHANQUYEN_MAHINH">
+      <End Role="MAHINH" EntitySet="MAHINHs" />
+      <End Role="PHANQUYEN" EntitySet="PHANQUYENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MONAN_THU_NHOMMONA" Association="Self.FK_MONAN_THU_NHOMMONA">
+      <End Role="NHOMMONAN" EntitySet="NHOMMONANs" />
+      <End Role="MONAN" EntitySet="MONANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHIEUNHA_LAP_NHANVIEN" Association="Self.FK_PHIEUNHA_LAP_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QUANLYNH_QUANLYNHO_NHANVIEN" Association="Self.FK_QUANLYNH_QUANLYNHO_NHANVIEN">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="QUANLYNHOMNGUOIDUNG" EntitySet="QUANLYNHOMNGUOIDUNGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHANQUYE_PHANQUYEN_NHOMNGUO" Association="Self.FK_PHANQUYE_PHANQUYEN_NHOMNGUO">
+      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNGs" />
+      <End Role="PHANQUYEN" EntitySet="PHANQUYENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QUANLYNH_QUANLYNHO_NHOMNGUO" Association="Self.FK_QUANLYNH_QUANLYNHO_NHOMNGUO">
+      <End Role="NHOMNGUOIDUNG" EntitySet="NHOMNGUOIDUNGs" />
+      <End Role="QUANLYNHOMNGUOIDUNG" EntitySet="QUANLYNHOMNGUOIDUNGs" />
+    </AssociationSet>
+    <FunctionImport Name="InHoaDon" ReturnType="Collection(QUANLYQUANANModel.InHoaDon_Result)">
+      <Parameter Name="MaHD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QUANLYQUANANModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QUANLYQUANANModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="InHoaDon_Result">
+    <Property Type="Int32" Name="SoLuongDat" Nullable="false" />
+    <Property Type="String" Name="MAMONAN" Nullable="false" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

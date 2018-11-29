@@ -1,0 +1,32 @@
+﻿#detailed-product .choosen-product {
+    margin: auto;
+    background: #ffffff9c;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: justify;
+}
+
+.finfo-left img {
+    width: 200px;
+}
+
+.finfo-right {
+    text-align: justify;
+}
+
+#recommended-products {
+    background: #ffffff9c;
+    padding: 15px;
+    border-radius: 6px;
+    margin: 6px;
+}
+
+    #recommended-products .re-food img {
+        height: 150px;
+        width: 150px;
+    }
+
+    #recommended-products .re-food {
+        text-align: center;
+    }
+

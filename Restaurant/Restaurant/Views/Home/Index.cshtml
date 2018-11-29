@@ -1,0 +1,46 @@
+﻿@model List<Restaurant.ViewModel.MonAn.MonAnViewModel>
+
+
+
+    <div id="collumn-main-menu">
+        <ul>
+            <li><a href="#">all</a></li>
+            <li><a href="#">desert</a></li>
+            <li><a href="#">spicy foods</a></li>
+            <li><a href="#">noodle</a></li>
+            <li><a href="#">break</a></li>
+            <li><a href="#">beverage</a></li>
+            <li><a href="#">cofffe</a></li>
+        </ul>
+    </div>
+    <div id="products">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <div class="food">
+                            <a href="@Url.Action("ChiTietMonAn","MonAn",new { id=item.Ma})" data-id="">
+                                <img class="fimage" src="@item.Anh" alt="" srcset="">
+                                <div class="fimfo">
+                                    <h5 class="fname">@item.Ten</h5>
+                                    <h5 class="fprice">Giá món ăn</h5>
+                                    <span class="fdiscount">Giảm giá</span>
+                                </div>
+                            </a>
+                            <div class="action">
+                                @*<ul>
+                                    <li><a href="#">Đặt ngay</a></li>
+                                    <li><a href="#">Thêm vào giỏ</a></li>
+                                </ul>*@
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+            </div>
+        </div>
+
+    </div>
+
