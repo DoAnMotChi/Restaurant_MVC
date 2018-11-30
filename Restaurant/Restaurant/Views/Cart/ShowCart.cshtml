@@ -12,27 +12,35 @@
 
 <div class="container">
     <div id="booked-food">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Sản phẩm</th>
-                    <th>Số lượng</th>
-                    <th>Đơn giá</th>
-                    <th>Thành tiền</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Foods)
-                {
+        @if (Model != null)
+        {
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td>@item.ID</td>
-                        <td>@item.Quantity</td>
-                        <td> giá</td>
-                        <td>tiền</td>
+                        <th>Sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Foods)
+                    {
+                        <tr>
+                            <td>@item.ID</td>
+                            <td>@item.Quantity</td>
+                            <td> giá</td>
+                            <td>tiền</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a href="#" class="btn btn-primary" style="margin:10% 40%">Đặt hàng</a>
+        }
+        else
+        {
+            <h3>Không có sản phẩm</h3>
+        }
     </div>
 </div>
 
