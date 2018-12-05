@@ -129,12 +129,12 @@ namespace Restaurant.Queries.Cart
             return 0;
         }
 
-        public static List<MonAnViewModel> Loc_CollaborativeFiltering(CartViewModel cart, string maTourChon, int soLuongChon)
+        public static List<MonAnViewModel> Loc_CollaborativeFiltering(CartViewModel cart, string idChoosenFood, int quantity_Recommended)
         {
             var dsDatKHChinh = GetChoosingFoods(cart);
-            var bestCustomer = FindTheBestCollaborator(dsDatKHChinh, FindListHoaDon(maTourChon));
+            var bestCustomer = FindTheBestCollaborator(dsDatKHChinh, FindListHoaDon(idChoosenFood));
             //Lay Ds rate bang duc lo
-            Dictionary<string, double> ketQuaChiSoR = new Dictionary<string, double>();
+            Dictionary<string, double> R_result = new Dictionary<string, double>();
             foreach (var item in dsDatKHChinh)
             {
                 double sim;
@@ -146,23 +146,22 @@ namespace Restaurant.Queries.Cart
                 {
                     sim = item.Quantity;
                 }
-                ketQuaChiSoR.Add(item.ID, sim);
+                R_result.Add(item.ID, sim);
             }
             //------------------------
-            var res = ketQuaChiSoR.OrderByDescending(t => t.Value).Select(t => t.Key).ToList();
-            int chiSoTourDangChon = res.FindIndex(t => t == maTourChon);
-            res.RemoveAt(chiSoTourDangChon);
-            var collection = res.Take(soLuongChon).ToList();
-            //Lay Chi tiet Tour
-            List<MonAnViewModel> ketQua = new List<MonAnViewModel>();
+            var res = R_result.OrderByDescending(t => t.Value).Select(t => t.Key).ToList();
+            int indexChoosenFood = res.FindIndex(t => t == idChoosenFood);
+            res.RemoveAt(indexChoosenFood);
+            var collection = res.Take(quantity_Recommended).ToList();
+            List<MonAnViewModel> recommendedResult = new List<MonAnViewModel>();
             if (collection.Count > 0)
             {
                 foreach (var item in collection)
                 {
-                    ketQua.Add(MonAnQueries.FindFood(item));
+                    recommendedResult.Add(MonAnQueries.FindFood(item));
                 }
             }
-            return ketQua;
+            return recommendedResult;
         }
 
 
